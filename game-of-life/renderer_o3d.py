@@ -130,9 +130,3 @@ class Renderer:
         tick_return = self.app.run_one_tick()
         if tick_return:
             self.main_viz.post_redraw()
-
-
-if __name__ == "__main__":
-    renderer = Renderer(25)
-    for i in range(100):
-        renderer.render(None)
