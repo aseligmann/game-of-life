@@ -46,5 +46,23 @@ class Game:
         # Set the next grid as the grid
         self.grid = next_grid
 
+    def getState(self):
+        """
+        Get the grid
+        """
+        return self.grid.grid
+
+    def getState2D(self):
+        """
+        Get the grid
+        """
+        return self.getState()
+
+    def getState3D(self):
+        """
+        Get the grid
+        """
+        return [self.getState()]  # Grid is only implemented in 2D atm 🤷‍♂️
+
     def print(self):
         self.grid.print()
