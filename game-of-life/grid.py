@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 class Grid:
     def __init__(self, size=0, grid=None):
         """

@@ -14,13 +14,15 @@ class Renderer:
         self.app.initialize()
         self.main_viz = o3d.visualization.O3DVisualizer("Visualization", 1024, 1024)
         self.app.add_window(self.main_viz)
-        
+
         self.main_viz.set_background([1, 1, 1, 1], None)
-        center = self.size/2
-        self.main_viz.setup_camera(60,
-                                   [center, center, 0], # Center
-                                   [center, center, self.size], # Camera position
-                                   [0, 0, 1]) # Up
+        center = self.size / 2
+        self.main_viz.setup_camera(
+            60,
+            [center, center, 0],  # Center
+            [center, center, self.size],  # Camera position
+            [0, 0, 1],
+        )  # Up
 
     def init_scene(self):
         self.size_x = self.size
@@ -35,12 +37,14 @@ class Renderer:
         # Add grid lines to the scene
         line_points = []
         lines = []
+
         def add_line(start, end):
             line_points.append(start)
             line_points.append(end)
             point_start_idx = len(line_points)
             point_end_idx = point_start_idx + 1
             lines.append([point_start_idx, point_end_idx])
+
         for i in range(self.size_x + 1):
             for j in range(self.size_y + 1):
                 for k in range(self.size_z + 1):
@@ -57,7 +61,8 @@ class Renderer:
 
         # Add a coordinate frame to the scene
         mesh_frame = o3d.geometry.TriangleMesh.create_coordinate_frame(
-            size=1.0, origin=[0, 0, 0])
+            size=1.0, origin=[0, 0, 0]
+        )
         self.main_viz.add_geometry("coordinate_frame", mesh_frame, default_mat)
 
         # Initialize boxes
@@ -72,14 +77,25 @@ class Renderer:
             box.translate((0.0, 0.0, 0.0))
             box.paint_uniform_color([0.2, 0.2, 0.2])
             return box
+
         def create_box_mat():
             mat = o3d.visualization.rendering.MaterialRecord()
             mat.shader = "defaultLit"
             mat.base_color = [0.0, 0.0, 0.0, 1.0]
             return mat
-        self.boxes = [[[None for x in range(self.size_x)] for y in range(self.size_y)] for z in range(self.size_z)]
-        self.materials = [[[None for x in range(self.size_x)] for y in range(self.size_y)] for z in range(self.size_z)]
-        self.is_shown = [[[True for x in range(self.size_x)] for y in range(self.size_y)] for z in range(self.size_z)]
+
+        self.boxes = [
+            [[None for x in range(self.size_x)] for y in range(self.size_y)]
+            for z in range(self.size_z)
+        ]
+        self.materials = [
+            [[None for x in range(self.size_x)] for y in range(self.size_y)]
+            for z in range(self.size_z)
+        ]
+        self.is_shown = [
+            [[True for x in range(self.size_x)] for y in range(self.size_y)]
+            for z in range(self.size_z)
+        ]
         for k in range(self.size_z):
             for j in range(self.size_y):
                 for i in range(self.size_x):
@@ -101,16 +117,19 @@ class Renderer:
                     if show:
                         if not self.is_shown[k][j][i]:
                             self.is_shown[k][j][i] = True
-                            self.main_viz.add_geometry(f"box_{i}_{j}_{k}", self.boxes[k][j][i], self.materials[k][j][i])
+                            self.main_viz.add_geometry(
+                                f"box_{i}_{j}_{k}",
+                                self.boxes[k][j][i],
+                                self.materials[k][j][i],
+                            )
                     else:
                         if self.is_shown[k][j][i]:
                             self.is_shown[k][j][i] = False
                             self.main_viz.remove_geometry(f"box_{i}_{j}_{k}")
-        
+
         tick_return = self.app.run_one_tick()
         if tick_return:
             self.main_viz.post_redraw()
-
 
 
 if __name__ == "__main__":
