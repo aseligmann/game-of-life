@@ -1,18 +1,27 @@
 #!/usr/bin/python3
 
+from time import sleep
 from game import Game
 from grid import Grid
 from patterns import Pulsar
 
+from renderer_o3d import Renderer
+
 
 if __name__ == "__main__":
-    grid = Grid()
-    grid.empty(19)
-    Pulsar().populate(grid, 9, 9)
-    grid.print()
+    size = 19
 
+    grid = Grid()
+    grid.empty(size)
+    Pulsar().populate(grid, int(size / 2), int(size / 2))
+
+    renderer = Renderer(size)
     game = Game(grid=grid)
-    for i in range(10):
-        print("-"*80)
+
+    def update():
         game.tick()
-        game.print()
+        renderer.render(game.getState3D())
+
+    for i in range(100):
+        update()
+        sleep(0.2)
