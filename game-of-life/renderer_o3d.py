@@ -107,7 +107,6 @@ class Renderer:
                             self.is_shown[k][j][i] = False
                             self.main_viz.remove_geometry(f"box_{i}_{j}_{k}")
         
-        # self.app = o3d.visualization.gui.Application.instance
         tick_return = self.app.run_one_tick()
         if tick_return:
             self.main_viz.post_redraw()
