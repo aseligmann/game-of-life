@@ -5,7 +5,8 @@ from game import Game
 from grid import Grid
 from patterns import Pulsar
 
-from renderer_o3d import Renderer
+# from renderer_o3d import Renderer
+from renderer_cv2 import Renderer
 
 
 if __name__ == "__main__":
@@ -24,4 +25,4 @@ if __name__ == "__main__":
 
     for i in range(100):
         update()
-        sleep(0.2)
+        sleep(0.1)
