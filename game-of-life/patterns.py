@@ -16,39 +16,39 @@ class Pulsar(Pattern):
         # Inner lines
         # Vertical
         for i in range(x - 4, x - 1):
-            grid.populate(i, x - 1)
+            grid.populate(i, y - 1)
         for i in range(x - 4, x - 1):
-            grid.populate(i, x + 1)
+            grid.populate(i, y + 1)
         for i in range(x + 2, x + 5):
-            grid.populate(i, x - 1)
+            grid.populate(i, y - 1)
         for i in range(x + 2, x + 5):
-            grid.populate(i, x + 1)
+            grid.populate(i, y + 1)
         # Horizontal
         for j in range(y - 4, y - 1):
-            grid.populate(y - 1, j)
+            grid.populate(x - 1, j)
         for j in range(y - 4, y - 1):
-            grid.populate(y + 1, j)
+            grid.populate(x + 1, j)
         for j in range(y + 2, y + 5):
-            grid.populate(y - 1, j)
+            grid.populate(x - 1, j)
         for j in range(y + 2, y + 5):
-            grid.populate(y + 1, j)
+            grid.populate(x + 1, j)
 
         # Outer lines
         # Vertical
         for i in range(x - 4, x - 1):
-            grid.populate(i, x - 6)
+            grid.populate(i, y - 6)
         for i in range(x - 4, x - 1):
-            grid.populate(i, x + 6)
+            grid.populate(i, y + 6)
         for i in range(x + 2, x + 5):
-            grid.populate(i, x - 6)
+            grid.populate(i, y - 6)
         for i in range(x + 2, x + 5):
-            grid.populate(i, x + 6)
+            grid.populate(i, y + 6)
         # Horizontal
         for j in range(y - 4, y - 1):
-            grid.populate(y - 6, j)
+            grid.populate(x - 6, j)
         for j in range(y - 4, y - 1):
-            grid.populate(y + 6, j)
+            grid.populate(x + 6, j)
         for j in range(y + 2, y + 5):
-            grid.populate(y - 6, j)
+            grid.populate(x - 6, j)
         for j in range(y + 2, y + 5):
-            grid.populate(y + 6, j)
+            grid.populate(x + 6, j)
