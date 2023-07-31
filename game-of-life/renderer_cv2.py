@@ -24,6 +24,7 @@ class Renderer:
     def render(self, state):
         state_array = np.array(state, dtype=np.uint8)
         img_state = state_array.squeeze() * 255
+        img_state = cv.bitwise_not(img_state)
         self.img = cv.cvtColor(img_state, cv.COLOR_GRAY2BGR)
 
         resized = cv.resize(self.img, (1000, 1000), interpolation=cv.INTER_NEAREST)
